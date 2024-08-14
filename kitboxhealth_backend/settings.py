@@ -36,10 +36,10 @@ ADMIN_URL = "staff/"
 DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
-                 'kitboxhealth-b2d037a42bfc.herokuapp.com']
+                 'https://kitboxhealth-backend-c5d7725f270c.herokuapp.com']
 
 CORS_ALLOWED_ORIGINS = [
-    "kitboxhealth-b2d037a42bfc.herokuapp.com/",
+    "https://kitboxhealth-backend-c5d7725f270c.herokuapp.com",
 ]
 
 if IN_DEV:
@@ -77,6 +77,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
