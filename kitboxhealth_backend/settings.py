@@ -36,7 +36,7 @@ ADMIN_URL = "staff/"
 DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
-                 'https://kitboxhealth-backend-c5d7725f270c.herokuapp.com']
+                 'kitboxhealth-backend-c5d7725f270c.herokuapp.com']
 
 CORS_ALLOWED_ORIGINS = [
     "https://kitboxhealth-backend-c5d7725f270c.herokuapp.com",
