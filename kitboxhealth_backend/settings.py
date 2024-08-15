@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # docs API
+    'drf_yasg',
     # Settings rest_framework
     'rest_framework',
     # 'rest_framework_simplejwt',
@@ -106,6 +108,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kitboxhealth_backend.wsgi.application'
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'Token-based authorization. Example: "Authorization: Token f2be7cd40f98e0f81b793c2783770c89529a1661"',
+        }
+    },
+    'SHOW_REQUEST_HEADERS': True,
+    'OPERATIONS_SORTER': 'alpha',
+    'PERSIST_AUTH': True,
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

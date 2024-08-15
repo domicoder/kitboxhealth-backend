@@ -1,5 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
 from appointments.views import (AppointmentViewSet, CustomAuthToken,
@@ -21,4 +24,24 @@ urlpatterns = [
          name='api_register'),  # Add this line for registration
 
     path('admin/', admin.site.urls),
+]
+
+# Swagger UI -API Documentation-
+schema_view = get_schema_view(
+    openapi.Info(
+        title="KitboxHealth API",
+        default_version='v1',
+        description="KitboxHealth API.",
+        terms_of_service="https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/",
+        contact=openapi.Contact(email="sanchezyander@gmail.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+    authentication_classes=[],
+)
+
+urlpatterns += [
+    path('api/v1/docs/', schema_view.with_ui('swagger',
+         cache_timeout=0), name='schema-swagger-ui'),
 ]

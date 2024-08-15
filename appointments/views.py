@@ -9,6 +9,9 @@ from rest_framework.permissions import (AllowAny, IsAdminUser, IsAuthenticated,
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from common.swagger_utils import (custom_auth_token_schema,
+                                  user_registration_schema)
+
 from .models import Appointment, Doctor, Patient
 from .serializers import (AppointmentSerializer, DoctorSerializer,
                           PatientSerializer, UserRegistrationSerializer,
@@ -130,6 +133,8 @@ class LogoutView(APIView):
 
 
 class UserRegistrationView(APIView):
+
+    @user_registration_schema
     def post(self, request):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
@@ -154,6 +159,7 @@ class UserRegistrationView(APIView):
 class CustomAuthToken(APIView):
     permission_classes = [AllowAny]
 
+    @custom_auth_token_schema
     def post(self, request, *args, **kwargs):
         username = request.data.get('username')
         password = request.data.get('password')
